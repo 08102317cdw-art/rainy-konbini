@@ -28,10 +28,6 @@
 
 当前提供的是原始文件夹中的单文件打包版本；目录中没有未打包的模块源码、构建配置或源映射文件。
 
-## 宣传视频
-
-[从 v1.0.0 Release 下载宣传视频](https://github.com/08102317cdw-art/rainy-konbini/releases/tag/v1.0.0)。视频单独提供，不会在打开场景时自动下载。
-
 ## 开源许可
 
 本项目采用 [MIT 许可证](LICENSE)。内嵌的第三方库许可见 [第三方说明](THIRD_PARTY_NOTICES.md)。
