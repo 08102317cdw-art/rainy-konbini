@@ -1,0 +1,41 @@
+name: 发布雨夜便利店网页
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: 发布在线体验
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 获取项目
+        uses: actions/checkout@v6
+      - name: 配置网页发布
+        uses: actions/configure-pages@v5
+      - name: 整理公开网页文件
+        run: |
+          mkdir _site
+          cp index.html rainy-konbini-diorama.html LICENSE THIRD_PARTY_NOTICES.md _site/
+          touch _site/.nojekyll
+      - name: 上传网页
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: 发布网页
+        id: deployment
+        uses: actions/deploy-pages@v4
